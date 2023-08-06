@@ -55,7 +55,7 @@ class member:
     #----------------------------------------------
     # methods below
     
-    def enrol(self, groupExercise):
+    def enrol(self, groupExercise):# 加进去是加object不是名字。明天挪动这个功能到groupExercise
         currentCapacity = len(groupExercise.memberCheckin)
         if currentCapacity >= groupExercise.maxCapacity:
             while True:
