@@ -1,4 +1,4 @@
-class member:
+class Member:
     def __init__(self, firstName, lastName, idNumber):
         self.__firstName = firstName
         self.__lastName = lastName
@@ -55,12 +55,12 @@ class member:
     #----------------------------------------------
     # methods below
     def enrol(self, groupExercise):
-        if isinstance(groupExercise, groupExercise):
+        if isinstance(groupExercise, GroupExercise):
             groupExercise.enrol(self)
             self.__enrolClassList.append(groupExercise)
 
     def cancelEnrol(self,groupExercise):
-        if isinstance(groupExercise, groupExercise):
+        if isinstance(groupExercise, GroupExercise):
             groupExercise.removeMember(self)
             self.__enrolClassList.remove(groupExercise)
 

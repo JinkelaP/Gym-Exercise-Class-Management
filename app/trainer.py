@@ -1,12 +1,12 @@
-class trainer:
-    def __init__(self):
-        self.__firstName = None
-        self.__lastName = None
-        self.__expertise = None
+class Trainer:
+    def __init__(self, firstName, lastName, expertise):
+        self.__firstName = firstName
+        self.__lastName = lastName
+        self.__expertise = expertise
         self.__enrolClassList = []
 
     def __str__(self):
-        return (self.__firstName, self.__lastName, self.__expertise)
+        return self.__firstName + self.__lastName + self.__expertise
     
     #----------------------------------------------
     # getter and setter for each attributes
@@ -52,7 +52,7 @@ class trainer:
 
     #----------------------------------------------
     # methods below
-    def EnrolClassDisplay(self):
+    def enrolClassDisplay(self):
         if self.__enrolClassList != []:
         
             print(self.__firstName + " " + self.__lastName + 'has been assigned to the following classes.' )
@@ -63,6 +63,7 @@ class trainer:
             return (self.__firstName + " " + self.__lastName + 'has not been assigned to any class.')
         
     def assignClass(self, groupExercise):
-        if isinstance(groupExercise, groupExercise):
+        if isinstance(groupExercise, GroupExercise):
             self.__enrolClassList.append(groupExercise)
+            groupExercise.assignTrainer(self)
             return (groupExercise + " has been added to trainer's assigned list.")

@@ -1,4 +1,4 @@
-class groupExercise:
+class GroupExercise:
     def __init__(self, className, maxCapacity):
         self.__className = className
         self.__trainer = None
@@ -31,7 +31,7 @@ Max {self.__maxCapacity} students allowed.')
     
     @trainer.setter
     def trainer(self, value):
-        if not isinstance(value, trainer):
+        if not isinstance(value, Trainer):
             raise ValueError('Trainer must be a trainer object!')
         self.__trainer = value
 
@@ -118,7 +118,7 @@ Max {self.__maxCapacity} students allowed.')
             print(member)
     
     def assignTrainer(self, t):
-        if not isinstance(t, trainer):
+        if not isinstance(t, Trainer):
             raise ValueError('Trainer must be a trainer object!')
         self.__trainer = t
         return (t + ' has been assigned as the trainer of ' + self.__className)
