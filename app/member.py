@@ -1,12 +1,12 @@
 class member:
-    def __init__(self):
-        self.__firstName = None
-        self.__lastName = None
-        self.__idNumber = None
+    def __init__(self, firstName, lastName, idNumber):
+        self.__firstName = firstName
+        self.__lastName = lastName
+        self.__idNumber = idNumber
         self.__enrolClassList = []
 
     def __str__(self):
-        return (self.__idNumber, self.__firstName, self.__lastName)
+        return self.__idNumber + self.__firstName + self.__lastName
     
     #----------------------------------------------
     # getter and setter for each attributes
@@ -54,13 +54,15 @@ class member:
 
     #----------------------------------------------
     # methods below
-    
+    def enrol(self, groupExercise):
+        if isinstance(groupExercise, groupExercise):
+            groupExercise.enrol(self)
+            self.__enrolClassList.append(groupExercise)
 
-
-
-
-    def cancelEnrol(groupExercise):
-        pass
+    def cancelEnrol(self,groupExercise):
+        if isinstance(groupExercise, groupExercise):
+            groupExercise.removeMember(self)
+            self.__enrolClassList.remove(groupExercise)
 
     def EnrolClassDisplay(self):
         if self.enrolClassList != []:
