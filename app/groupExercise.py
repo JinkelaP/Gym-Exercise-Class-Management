@@ -5,7 +5,7 @@ class groupExercise:
         self.__maxCapacity = None
         self.__memberAll = []
         self.__memberWaitlist = []
-        self.__feeAmount = None
+        self.__fee = None
         self.__memberCheckin = []
 
     def __str__(self):
@@ -66,14 +66,14 @@ Max {self.__maxCapacity} students allowed.')
         self.__memberWaitlist = value
 
     @property
-    def feeAmount(self):
-        return self.__feeAmount
+    def fee(self):
+        return self.__fee
     
-    @feeAmount.setter
-    def feeAmount(self, value):
+    @fee.setter
+    def fee(self, value):
         if not isinstance(value, int):
-            raise ValueError('Fee Amount must be a number!')
-        self.__feeAmount = value
+            raise ValueError('Fee must be a number!')
+        self.__fee = value
 
     @property
     def memberCheckin(self):
@@ -89,3 +89,58 @@ Max {self.__maxCapacity} students allowed.')
     # methods below
 
     
+    def enrol(self, member):
+        currentCapacity = len(self.memberAll)
+        if currentCapacity >= self.maxCapacity:
+            while True:
+                userInput = input('Unfortunately the class has been fully enrolled.\nAre you happy to be added to the waitlist? (y/n)')
+                if userInput.upper() == 'Y' or userInput.upper() == 'YES':
+                    self.__memberWaitlist.append(member)
+                    print(member.firstName + ' has been added to the waitlist of ' + self.__className + '!')
+                    input('Press enter to return to the menu.')
+                elif userInput.upper() == 'N' or userInput.upper() == 'NO':
+                    return 'Class enrolment cancelled.'
+                else:
+                    print('Please re-enter.')
+
+    def remove(self, member):
+        if member in self.__memberCheckin:
+            self.__memberAll.pop(member)
+            return (member + ' has been removed from the enrolled list.')
+        else:
+            return (member + ' is not in the enrolled list')
+        
+    def displayEnrolled(self):
+        print('All gym members currently enrolled in ' + self.__className)
+        for member in self.__memberAll:
+            print(member)
+    
+    def assignTrainer(self, t):
+        if not isinstance(t, object):
+            raise ValueError('Trainer must be a trainer object!')
+        self.__trainer = t
+        return (t + ' has been assigned as the trainer of ' + self.__className)
+    
+    def numberEnrolled(self):
+        return (str(len(self.__memberAll)) + ' members has enrolled in the class!')
+    
+    def numberAvailable(self):
+        available = self.__maxCapacity - len(self.__memberAll)
+        return (str(available) + ' slots available for enrolment!')
+    
+    def setFee(self, fee):
+        pass
+
+    def totalPayment(self):
+        total = len(self.__memberAll) * self.__fee
+        return ('The total payment received is ' + total + ' NZD.')
+    
+    def markAttendance(self, member):
+        if member in self.__memberAll:
+            self.__memberCheckin.append(member)
+            return (member + "'s attendance has been marked.")
+        else:
+            return (f"Caution: you cannot mark {member.firstName}'s attendance because {member.firstName} is not in the enrolled list.")
+        
+    def attendanceClass(self):
+            return ('The attendance of the class is '+ str(len((self.__memberAll) / len(self.__memberAll))* 100) + '%')

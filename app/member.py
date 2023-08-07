@@ -55,19 +55,7 @@ class member:
     #----------------------------------------------
     # methods below
     
-    def enrol(self, groupExercise):# 加进去是加object不是名字。明天挪动这个功能到groupExercise
-        currentCapacity = len(groupExercise.memberCheckin)
-        if currentCapacity >= groupExercise.maxCapacity:
-            while True:
-                userInput = input('Unfortunately the class has been fully enrolled.\nAre you happy to be added to the waitlist? (y/n)')
-                if userInput.upper() == 'Y' or userInput.upper() == 'YES':
-                    groupExercise.waitlist.append((self.__firstName, self.__lastName, self.idNumber))
-                    print(self.__firstName + ' has been added to the waitlist of ' + groupExercise.className + '!')
-                    input('Press enter to return to the menu.')
-                elif userInput.upper() == 'N' or userInput.upper() == 'NO':
-                    return 'Class enrolment cancelled.'
-                else:
-                    print('Please re-enter.')
+
 
 
 
