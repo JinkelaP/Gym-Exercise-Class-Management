@@ -1,3 +1,5 @@
+from groupExercise import GroupExercise
+
 class Trainer:
     def __init__(self, firstName, lastName, expertise):
         self.__firstName = firstName

@@ -1,3 +1,5 @@
+from groupExercise import GroupExercise
+
 class Member:
     nextID = 100
 

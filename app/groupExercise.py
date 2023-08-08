@@ -1,3 +1,6 @@
+from member import Member
+from trainer import Trainer
+
 class GroupExercise:
     def __init__(self, className, maxCapacity):
         self.__className = className
