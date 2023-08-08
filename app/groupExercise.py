@@ -42,7 +42,7 @@ Max {self.__maxCapacity} students allowed.')
     @maxCapacity.setter
     def maxCapacity(self, value):
         if not isinstance(value, int):
-            raise ValueError('Max Capacity of the class must be a number!')
+            raise ValueError('Max Capacity of the class must be an integer!')
         self.__maxCapacity = value
 
     @property
@@ -88,6 +88,9 @@ Max {self.__maxCapacity} students allowed.')
     #----------------------------------------------
     # methods below
 
+    success = 1
+    fail = 2
+    other = 3
     
     def enrol(self, member):
         currentCapacity = len(self.memberAll)

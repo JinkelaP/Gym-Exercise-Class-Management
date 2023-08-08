@@ -1,9 +1,13 @@
 class Member:
-    def __init__(self, firstName, lastName, idNumber):
+    nextID = 100
+
+    def __init__(self, firstName, lastName):
         self.__firstName = firstName
         self.__lastName = lastName
-        self.__idNumber = idNumber
+        self.__idNumber = Member.nextID
         self.__enrolClassList = []
+        # auto generated ID
+        Member.nextID += 1
 
     def __str__(self):
         return self.__idNumber + self.__firstName + self.__lastName
