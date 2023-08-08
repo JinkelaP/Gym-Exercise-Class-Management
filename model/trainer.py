@@ -1,4 +1,4 @@
-from groupExercise import GroupExercise
+import model.groupExercise as gE
 
 class Trainer:
     def __init__(self, firstName, lastName, expertise):
@@ -65,7 +65,7 @@ class Trainer:
             return (self.__firstName + " " + self.__lastName + 'has not been assigned to any class.')
         
     def assignClass(self, groupExercise):
-        if isinstance(groupExercise, GroupExercise):
+        if isinstance(groupExercise, gE.GroupExercise):
             self.__enrolClassList.append(groupExercise)
             groupExercise.assignTrainer(self)
             return (groupExercise + " has been added to trainer's assigned list.")

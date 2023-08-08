@@ -1,5 +1,5 @@
-from member import Member
-from trainer import Trainer
+import model.member as modelMember
+import model.trainer as modelTrainer
 
 class GroupExercise:
     def __init__(self, className, maxCapacity):
@@ -34,7 +34,7 @@ Max {self.__maxCapacity} students allowed.')
     
     @trainer.setter
     def trainer(self, value):
-        if not isinstance(value, Trainer):
+        if not isinstance(value, modelTrainer):
             raise ValueError('Trainer must be a trainer object!')
         self.__trainer = value
 
@@ -124,10 +124,8 @@ Max {self.__maxCapacity} students allowed.')
             print(member)
     
     def assignTrainer(self, t):
-        if not isinstance(t, Trainer):
-            raise ValueError('Trainer must be a trainer object!')
         self.__trainer = t
-        return (t + ' has been assigned as the trainer of ' + self.__className)
+        return (t.firstName + ' has been assigned as the trainer of ' + self.__className)
     
     def numberEnrolled(self):
         return (str(len(self.__memberAll)) + ' members has enrolled in the class!')

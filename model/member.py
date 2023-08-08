@@ -1,4 +1,4 @@
-from groupExercise import GroupExercise
+import model.groupExercise as gE
 
 class Member:
     nextID = 100
@@ -61,12 +61,12 @@ class Member:
     #----------------------------------------------
     # methods below
     def enrol(self, groupExercise):
-        if isinstance(groupExercise, GroupExercise):
+        if isinstance(groupExercise, gE.GroupExercise):
             groupExercise.enrol(self)
             self.__enrolClassList.append(groupExercise)
 
     def cancelEnrol(self,groupExercise):
-        if isinstance(groupExercise, GroupExercise):
+        if isinstance(groupExercise, gE.GroupExercise):
             groupExercise.removeMember(self)
             self.__enrolClassList.remove(groupExercise)
 

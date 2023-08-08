@@ -47,7 +47,8 @@ while userInput.upper() != 'Q':
     elif userInput == '2':
         clearTerminal()
         print('2 - Assign a trainer to a class\n')
-        ctl.assignTrainer()
+        print(ctl.assignTrainer())
+        input()
     
     elif userInput == '3':
         clearTerminal()
@@ -119,10 +120,7 @@ while userInput.upper() != 'Q':
         print('16 - Display classes a trainer teaches\n')
         ctl.trainerClass()
     
-
-
-
-
+    # Repeat the menu
     clearTerminal()
     displayMenu()
     userInput = input('Please select:')
