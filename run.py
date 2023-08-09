@@ -42,7 +42,7 @@ userInput = input('Please select:')
 while userInput.upper() != 'Q':
     if userInput == '0':
         clearTerminal()
-        print("0 - Create\n")
+        print("0 - Create (IMPORTANT)\n")
         input(ctl.create())
 
     elif userInput == '1':

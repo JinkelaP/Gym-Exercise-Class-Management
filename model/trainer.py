@@ -64,8 +64,8 @@ class Trainer:
         else:
             return (self.__firstName + " " + self.__lastName + 'has not been assigned to any class.')
         
-    def assignClass(self, groupExercise):
-        if isinstance(groupExercise, gE.GroupExercise):
+    def enrol(self, groupExercise):
+        if groupExercise not in self.__enrolClassList:
             self.__enrolClassList.append(groupExercise)
-            groupExercise.assignTrainer(self)
-            return (groupExercise + " has been added to trainer's assigned list.")
+        else:
+            pass

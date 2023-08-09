@@ -53,7 +53,9 @@ def assignTrainer():
 
             #validate object 
             if (0 <= groupInput < len(groupList)) and (0 <= trainerInput < len(trainerList)):
+                trainerList[trainerInput].enrol(groupList[groupInput])
                 return groupList[groupInput].assignTrainer(trainerList[trainerInput])
+            
             else:
                 print('Incorrect index!')
             
@@ -122,10 +124,208 @@ def removeMember():
                     if result == 1:
                         member.cancelEnrol(groupList[groupInput])
                     
-                    input(result[0])
+                    return input(result[0])
+                else:
+                    input('Incorrect index!')
+            else:
+                input('Incorrect index!')
+    else:
+        return input('No class or member has been created.\n')
+
+
+def checkinMember():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            # choose members
+            if (0 <= groupInput < len(groupList)):
+                for index,member in enumerate(groupList[groupInput].memberAll):
+                    print(index, member)
+                memberInput = int(input('Please choose the member to checkin. Number only.\n'))
+
+                if (0 <= memberInput < len(groupList[groupInput].memberAll)):
+                    return input(groupList[groupInput].markAttendance(member))
                 else:
                     input('Incorrect index!')
             else:
                 input('Incorrect index!')
 
-                
+    else:
+        return input('No class or member has been created.\n')
+
+def listMemberInClass():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            # show members
+            if (0 <= groupInput < len(groupList)):
+                print('The follwoing members are enrolled in ' + groupList[groupInput].className)
+                for member in enumerate(groupList[groupInput].memberAll):
+                    print(member)
+                    return input('Press enter to return.')
+            else:
+                input('Incorrect index!')
+    
+    else:
+        return input('No class or member has been created.\n')
+    
+def listMemberWaitClass():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            # choose members
+            if (0 <= groupInput < len(groupList)):
+                print('The follwoing members are waitlisted in ' + groupList[groupInput].className)
+                for member in enumerate(groupList[groupInput].memberWaitlist):
+                    print(member)
+                    return input('Press enter to return.')
+            else:
+                input('Incorrect index!')
+    
+    else:
+        return input('No class or member has been created.\n')
+    
+def classSlotNumber():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            # using class method
+            if (0 <= groupInput < len(groupList)):
+                return input(groupList[groupInput].numberAvailable())
+            else:
+                input('Incorrect index!')
+    else:
+        return input('No class or member has been created.\n')
+    
+def classEnrolledNumber():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            # using class method
+            if (0 <= groupInput < len(groupList)):
+                return input(groupList[groupInput].numberEnrolled())
+            else:
+                input('Incorrect index!')
+    else:
+        return input('No class or member has been created.\n')
+
+def classWaitNumber():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            # using class method
+            if (0 <= groupInput < len(groupList)):
+                return input(groupList[groupInput].numberWait())
+            else:
+                input('Incorrect index!')
+    else:
+        return input('No class or member has been created.\n')
+    
+def classAttendNumber():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            # using class method
+            if (0 <= groupInput < len(groupList)):
+                return input(groupList[groupInput].numberAttend())
+            else:
+                input('Incorrect index!')
+    else:
+        return input('No class or member has been created.\n')
+    
+def classAttendRate():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            # using class method
+            if (0 <= groupInput < len(groupList)):
+                return input(groupList[groupInput].attendanceClass())
+            else:
+                input('Incorrect index!')
+    else:
+        return input('No class or member has been created.\n')
+
+def totalPayment():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            # using class method
+            if (0 <= groupInput < len(groupList)):
+                return input(groupList[groupInput].totalPayment())
+            else:
+                input('Incorrect index!')
+    else:
+        return input('No class or member has been created.\n')
+    
+def memberClass():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(memberList):
+                print(index, i.firstName)
+            memberInput = int(input('Please choose the member. Number only.\n'))
+            print('----------')
+
+            # using class method
+            if (0 <= memberInput < len(memberList)):
+                return input(memberList[memberInput].enrolClassDisplay())
+            else:
+                input('Incorrect index!')
+    else:
+        return input('No class or member has been created.\n')
+
+def trainerClass():
+    if groupList != [] and trainerList != []:
+        while True:
+            for index, i in enumerate(trainerList):
+                print(index, i.firstName)
+            trainerInput = int(input('Please choose the member. Number only.\n'))
+            print('----------')
+
+            # using class method
+            if (0 <= trainerInput < len(trainerList)):
+                return input(trainerList[trainerInput].enrolClassDisplay())
+            else:
+                input('Incorrect index!')
+    else:
+        return input('No trainer has been created.\n')
+
+
+
+            
+

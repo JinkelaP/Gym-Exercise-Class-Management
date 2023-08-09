@@ -72,8 +72,8 @@ class Member:
         else:
             pass
 
-    def EnrolClassDisplay(self):
-        if self.enrolClassList != []:
+    def enrolClassDisplay(self):
+        if self.__enrolClassList != []:
         
             print(self.firstName + " " + self.lastName + 'has enrolled the following classes.' )
         

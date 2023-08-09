@@ -137,6 +137,12 @@ Max {self.__maxCapacity} students allowed.\n')
         available = self.__maxCapacity - len(self.__memberAll)
         return (str(available) + ' slots available for enrolment!')
     
+    def numberWait(self):
+        return (str(len(self.__memberWaitlist)) + ' members are waiting in the class!')
+    
+    def numberAttend(self):
+        return (str(len(self.__memberCheckin)) + ' members has attended in the class!')
+    
     def setFee(self, fee):
         if not isinstance(fee, (int, float)):
             raise ValueError('Fee must be a number!')
@@ -145,7 +151,7 @@ Max {self.__maxCapacity} students allowed.\n')
 
     def totalPayment(self):
         total = len(self.__memberAll) * self.__fee
-        return ('The total payment received is ' + total + ' NZD.')
+        return ('The total payment received is ' + str(total) + ' NZD.')
     
     def markAttendance(self, member):
         if member in self.__memberAll:
@@ -155,4 +161,4 @@ Max {self.__maxCapacity} students allowed.\n')
             return (f"Caution: you cannot mark {member.firstName}'s attendance because {member.firstName} is not in the enrolled list.")
         
     def attendanceClass(self):
-            return ('The attendance of the class is '+ str(round(len((self.__memberAll) / len(self.__memberAll))* 100), 2) + '%')
+            return ('The attendance of the class is '+ str(round(len((self.__memberCheckin) / len(self.__memberAll))* 100), 2) + '%')
