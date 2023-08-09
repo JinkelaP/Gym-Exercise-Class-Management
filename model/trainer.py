@@ -8,7 +8,7 @@ class Trainer:
         self.__enrolClassList = []
 
     def __str__(self):
-        return self.__firstName + self.__lastName + self.__expertise
+        return self.__firstName + ' ' + self.__lastName + ' ' + self.__expertise
     
     #----------------------------------------------
     # getter and setter for each attributes

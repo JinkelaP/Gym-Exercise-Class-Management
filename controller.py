@@ -6,46 +6,39 @@ groupList = []
 memberList = []
 trainerList = []
 
-
+# Auto create all objects
 def create():
-    userInput = input('Input 1 for creating a class, 2 for member, 3 for trainer.\n')
-    if userInput == '1':
-        while True:
-            className = input('Please type the class name\n')
-            maxCapacity = input('Please type the maximum of class capacity. Number only.\n')
-            if maxCapacity.isnumeric():
-                newClass = GroupExercise(className, int(maxCapacity))
-                global groupList
-                groupList.append(newClass)
-                return input('Class created! Press enter to continue.')
-            else:
-                print('Capacity must be number only!\n')
+    userInput = input('Press enter to create 2 GroupExercise objects, 5 Member objects and 2 Trainer objects.\n')
+    global groupList
+    global memberList
+    global trainerList
     
-    elif userInput == '2':
-        while True:
-            firstName = input('Please type firstName. Alphabets only\n')
-            lastName = input('Please type lastName. Alphabets only\n')
-            if firstName.isalpha() and lastName.isalpha():
-                newMember = Member(firstName.capitalize(), lastName.capitalize())
-                global memberList
-                memberList.append(newMember)
-                return input('Member created! Press enter to continue.')
-            else:
-                print('Name must be alphabets only!\n')
-    
-    elif userInput == '3':
-        while True:
-            firstName = input('Please type firstName. Alphabets only\n')
-            lastName = input('Please type lastName. Alphabets only\n')
-            expertise = input('Please type expertise of the trainer. Alphabets only\n')
-            if firstName.isalpha() and lastName.isalpha() and expertise.isalpha():
-                newTrainer = Trainer(firstName.capitalize(), lastName.capitalize(), expertise.capitalize())
-                global trainerList
-                trainerList.append(newTrainer)
-                return input('Trainer created! Press enter to continue.')
-            else:
-                print('Name and expertise must be alphabets only!\n')
+    groupList = [GroupExercise('Swimming', 5), GroupExercise('Running', 5)]
+    memberList = [Member('Haochen', 'Zhu'), Member('Lu', 'Lu'), Member('Yang', 'Yang'), Member('Silver', 'Wang'), Member('Leo', 'Zhao')]
+    trainerList = [Trainer('Bill','Gates', 'Swimming'), Trainer('Elon','Musk', 'Running')]
 
+    return ('All objects created!')
+
+# Checking all objects
+def show():
+    if groupList != [] and memberList != [] and trainerList != []:
+        input('Press enter to show groups')
+        for index, group in enumerate(groupList):
+            print(index, group)
+        
+        input('\nPress enter to show members')
+        for index, member in enumerate(memberList):
+            print(index, member)
+
+        input('\nPress enter to show trainers')
+        for index, t in enumerate(trainerList):
+            print(index, t)
+
+        input('\nPress enter to return')
+    else:
+        input('\nPlease create objects first!')
+
+# Choose a class and assign a trainer.
 def assignTrainer():
     if groupList != [] and trainerList != []:
         while True:
@@ -64,13 +57,75 @@ def assignTrainer():
             else:
                 print('Incorrect index!')
             
-                
+# set the class fee as int                
+def setClassFee():
+    if groupList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+            feeInput = input('Please input the fee per person. Number only.\n')
 
+            #validate group and fee
+            if (0 <= groupInput < len(groupList)) and feeInput.isnumeric():
+                return groupList[groupInput].setFee(int(feeInput))
+            else:
+                print('Incorrect index or fee!')
 
-
-
-            
-
-    
     else:
-        return input('Either no class or trainer has been created.\n')
+        return input('No class has been created.\n')
+    
+# Add member to a class
+def addMember():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            for index,t in enumerate(memberList):
+                print(f'{index} {t.firstName} {t.lastName}')
+            memberInput = int(input('Please choose the member. Number only.\n'))
+
+            #validate object 
+            if (0 <= groupInput < len(groupList)) and (0 <= memberInput < len(memberList)):
+                result = groupList[groupInput].enrol(memberList[memberInput])
+                #add groupObject to memberClass if success
+                if result[1] == 1:
+                    memberList[memberInput].enrol(groupList[groupInput])
+                input(result[0])
+
+            else:
+                input('Incorrect index!')
+    else:
+        return input('No class or member has been created.\n')
+
+def removeMember():
+    if groupList != [] and memberList != []:
+        while True:
+            for index, i in enumerate(groupList):
+                print(index, i.className)
+            groupInput = int(input('Please choose the class. Number only.\n'))
+            print('----------')
+
+            # show members
+            if (0 <= groupInput < len(groupList)):
+                for index,member in enumerate(groupList[groupInput].memberAll):
+                    print(index, member)
+                memberInput = int(input('Please choose the member to remove. Number only.\n'))
+
+                if (0 <= memberInput < len(groupList[groupInput].memberAll)):
+                    result = groupList[groupInput].removeMember(member)
+
+                    if result == 1:
+                        member.cancelEnrol(groupList[groupInput])
+                    
+                    input(result[0])
+                else:
+                    input('Incorrect index!')
+            else:
+                input('Incorrect index!')
+
+                

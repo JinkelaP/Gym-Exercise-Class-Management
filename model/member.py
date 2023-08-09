@@ -12,7 +12,7 @@ class Member:
         Member.nextID += 1
 
     def __str__(self):
-        return self.__idNumber + self.__firstName + self.__lastName
+        return 'IDnumber ' + str(self.__idNumber) + ' ' + self.__firstName + ' ' + self.__lastName
     
     #----------------------------------------------
     # getter and setter for each attributes
@@ -61,14 +61,16 @@ class Member:
     #----------------------------------------------
     # methods below
     def enrol(self, groupExercise):
-        if isinstance(groupExercise, gE.GroupExercise):
-            groupExercise.enrol(self)
+        if groupExercise not in self.__enrolClassList:
             self.__enrolClassList.append(groupExercise)
+        else:
+            pass
 
     def cancelEnrol(self,groupExercise):
-        if isinstance(groupExercise, gE.GroupExercise):
-            groupExercise.removeMember(self)
+        if groupExercise in self.__enrolClassList:
             self.__enrolClassList.remove(groupExercise)
+        else:
+            pass
 
     def EnrolClassDisplay(self):
         if self.enrolClassList != []:

@@ -11,7 +11,8 @@ def clearTerminal():
 # Function to display the menu
 def displayMenu():
     print("\n==== WELCOME TO GYM EXERCISE CLASS MANAGEMENT APP ====\n")
-    print("1 - Create")
+    print("0 - Create")
+    print("1 - Show groups, members, trainers")
     print("2 - Assign a trainer to a class")
     print("3 - Set class fee")
     print("4 - Add a member to a class")
@@ -39,16 +40,20 @@ displayMenu()
 userInput = input('Please select:')
 
 while userInput.upper() != 'Q':
-    if userInput == '1':
+    if userInput == '0':
         clearTerminal()
-        print("1 - Create\n")
-        ctl.create()
+        print("0 - Create\n")
+        input(ctl.create())
+
+    elif userInput == '1':
+        clearTerminal()
+        print('1 - Show groups, members, trainers\n')
+        ctl.show()
     
     elif userInput == '2':
         clearTerminal()
         print('2 - Assign a trainer to a class\n')
-        print(ctl.assignTrainer())
-        input()
+        ctl.assignTrainer()
     
     elif userInput == '3':
         clearTerminal()

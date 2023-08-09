@@ -13,7 +13,7 @@ class GroupExercise:
 
     def __str__(self):
         return (f'This is {self.__className} class.\n{self.__trainer} is the trainer.\n\
-Max {self.__maxCapacity} students allowed.')
+Max {self.__maxCapacity} students allowed.\n')
     
     #----------------------------------------------
     # getter and setter for each attributes
@@ -91,32 +91,35 @@ Max {self.__maxCapacity} students allowed.')
     #----------------------------------------------
     # methods below
 
-    success = 1
-    fail = 2
-    other = 3
+    __success = 1
+    __fail = 2
+    __other = 3
     
     def enrol(self, member):
-        currentCapacity = len(self.memberAll)
-        if currentCapacity < self.maxCapacity:
-            self.__memberAll.append(member)
-            return (member.firstName + ' has been added to the enrolled list of ' + self.__className + '!')
+        if member not in self.__memberAll and member not in self.__memberWaitlist:
+            currentCapacity = len(self.__memberAll)
+            if currentCapacity < self.__maxCapacity:
+                self.__memberAll.append(member)
+                return ((member.firstName + ' has been added to the enrolled list of ' + self.__className + '!'), self.__success)
+            else:
+                while True:
+                    userInput = input('Unfortunately the class has been fully enrolled.\nAre you happy to be added to the waitlist? (y/n)')
+                    if userInput.upper() == 'Y' or userInput.upper() == 'YES':
+                        self.__memberWaitlist.append(member)
+                        return ((member.firstName + ' has been added to the waitlist of ' + self.__className + '!'), self.__success)
+                    elif userInput.upper() == 'N' or userInput.upper() == 'NO':
+                        return ('Class enrolment cancelled.', self.__fail)
+                    else:
+                        print('Please re-enter.')
         else:
-            while True:
-                userInput = input('Unfortunately the class has been fully enrolled.\nAre you happy to be added to the waitlist? (y/n)')
-                if userInput.upper() == 'Y' or userInput.upper() == 'YES':
-                    self.__memberWaitlist.append(member)
-                    return (member.firstName + ' has been added to the waitlist of ' + self.__className + '!')
-                elif userInput.upper() == 'N' or userInput.upper() == 'NO':
-                    return 'Class enrolment cancelled.'
-                else:
-                    print('Please re-enter.')
+            return ('Member already in enrolled list or waitlist!', self.__fail)
 
     def removeMember(self, member):
         if member in self.__memberAll:
             self.__memberAll.remove(member)
-            return (member + ' has been removed from the enrolled list.')
+            return ((member + ' has been removed from the enrolled list.'), self.__success)
         else:
-            return (member + ' is not in the enrolled list')
+            return ((member + ' is not in the enrolled list'), self.__fail)
         
     def displayEnrolled(self):
         print('All gym members currently enrolled in ' + self.__className)
