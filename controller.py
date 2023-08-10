@@ -13,7 +13,7 @@ def create():
     global memberList
     global trainerList
     
-    groupList = [GroupExercise('Swimming', 5), GroupExercise('Running', 5)]
+    groupList = [GroupExercise('Swimming', 3), GroupExercise('Running', 3)]
     memberList = [Member('Haochen', 'Zhu'), Member('Lu', 'Lu'), Member('Yang', 'Yang'), Member('Silver', 'Wang'), Member('Leo', 'Zhao')]
     trainerList = [Trainer('Bill','Gates', 'Swimming'), Trainer('Elon','Musk', 'Running')]
 
@@ -54,10 +54,12 @@ def assignTrainer():
             #validate object 
             if (0 <= groupInput < len(groupList)) and (0 <= trainerInput < len(trainerList)):
                 trainerList[trainerInput].enrol(groupList[groupInput])
-                return groupList[groupInput].assignTrainer(trainerList[trainerInput])
+                return input(groupList[groupInput].assignTrainer(trainerList[trainerInput]))
             
             else:
                 print('Incorrect index!')
+    else:
+        return input('No class has been created.\n')
             
 # set the class fee as int                
 def setClassFee():
@@ -71,7 +73,7 @@ def setClassFee():
 
             #validate group and fee
             if (0 <= groupInput < len(groupList)) and feeInput.isnumeric():
-                return groupList[groupInput].setFee(int(feeInput))
+                return input(groupList[groupInput].setFee(int(feeInput)))
             else:
                 print('Incorrect index or fee!')
 
@@ -97,7 +99,8 @@ def addMember():
                 #add groupObject to memberClass if success
                 if result[1] == 1:
                     memberList[memberInput].enrol(groupList[groupInput])
-                input(result[0])
+
+                return result[0]
 
             else:
                 input('Incorrect index!')
@@ -116,14 +119,12 @@ def removeMember():
             if (0 <= groupInput < len(groupList)):
                 for index,member in enumerate(groupList[groupInput].memberAll):
                     print(index, member)
-                memberInput = int(input('Please choose the member to remove. Number only.\n'))
+                memberInput = input('Please choose the member to remove. Number only.\n')
 
-                if (0 <= memberInput < len(groupList[groupInput].memberAll)):
-                    result = groupList[groupInput].removeMember(member)
+                if (0 <= int(memberInput) < len(groupList[groupInput].memberAll)) and memberInput.isnumeric():
+                    groupList[groupInput].memberAll[int(memberInput)].cancelEnrol(groupList[groupInput])
+                    result = groupList[groupInput].removeMember(groupList[groupInput].memberAll[int(memberInput)])
 
-                    if result == 1:
-                        member.cancelEnrol(groupList[groupInput])
-                    
                     return input(result[0])
                 else:
                     input('Incorrect index!')
@@ -145,10 +146,10 @@ def checkinMember():
             if (0 <= groupInput < len(groupList)):
                 for index,member in enumerate(groupList[groupInput].memberAll):
                     print(index, member)
-                memberInput = int(input('Please choose the member to checkin. Number only.\n'))
+                memberInput = input('Please choose the member to checkin. Number only.\n')
 
-                if (0 <= memberInput < len(groupList[groupInput].memberAll)):
-                    return input(groupList[groupInput].markAttendance(member))
+                if (0 <= int(memberInput) < len(groupList[groupInput].memberAll)) and memberInput.isnumeric():
+                    return input(groupList[groupInput].markAttendance(groupList[groupInput].memberAll[int(memberInput)]))
                 else:
                     input('Incorrect index!')
             else:
@@ -162,15 +163,15 @@ def listMemberInClass():
         while True:
             for index, i in enumerate(groupList):
                 print(index, i.className)
-            groupInput = int(input('Please choose the class. Number only.\n'))
+            groupInput = input('Please choose the class. Number only.\n')
             print('----------')
 
             # show members
-            if (0 <= groupInput < len(groupList)):
-                print('The follwoing members are enrolled in ' + groupList[groupInput].className)
-                for member in enumerate(groupList[groupInput].memberAll):
-                    print(member)
-                    return input('Press enter to return.')
+            if (0 <= int(groupInput) < len(groupList)):
+                print('The follwoing members are enrolled in ' + groupList[int(groupInput)].className)
+                for member in groupList[int(groupInput)].memberAll:
+                    print(member.firstName)
+                return input('Press enter to return.')
             else:
                 input('Incorrect index!')
     
@@ -188,9 +189,9 @@ def listMemberWaitClass():
             # choose members
             if (0 <= groupInput < len(groupList)):
                 print('The follwoing members are waitlisted in ' + groupList[groupInput].className)
-                for member in enumerate(groupList[groupInput].memberWaitlist):
+                for member in groupList[groupInput].memberWaitlist:
                     print(member)
-                    return input('Press enter to return.')
+                return input('Press enter to return.')
             else:
                 input('Incorrect index!')
     
@@ -287,7 +288,7 @@ def totalPayment():
 
             # using class method
             if (0 <= groupInput < len(groupList)):
-                return input(groupList[groupInput].totalPayment())
+                return groupList[groupInput].totalPayment()
             else:
                 input('Incorrect index!')
     else:
@@ -303,7 +304,7 @@ def memberClass():
 
             # using class method
             if (0 <= memberInput < len(memberList)):
-                return input(memberList[memberInput].enrolClassDisplay())
+                return memberList[memberInput].enrolClassDisplay()
             else:
                 input('Incorrect index!')
     else:
@@ -319,7 +320,7 @@ def trainerClass():
 
             # using class method
             if (0 <= trainerInput < len(trainerList)):
-                return input(trainerList[trainerInput].enrolClassDisplay())
+                return trainerList[trainerInput].enrolClassDisplay()
             else:
                 input('Incorrect index!')
     else:

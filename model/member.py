@@ -75,10 +75,11 @@ class Member:
     def enrolClassDisplay(self):
         if self.__enrolClassList != []:
         
-            print(self.firstName + " " + self.lastName + 'has enrolled the following classes.' )
+            print(self.firstName + " " + self.lastName + ' has enrolled the following classes.' )
         
             for i in self.enrolClassList:
-                print(i)
+                print(i.className)
+            return 'Press enter to return.'
         else:
-            return (self.firstName + " " + self.lastName + 'has not enrolled any class.')
+            return (self.firstName + " " + self.lastName + ' has not enrolled any class.')
 

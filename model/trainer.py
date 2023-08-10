@@ -57,12 +57,13 @@ class Trainer:
     def enrolClassDisplay(self):
         if self.__enrolClassList != []:
         
-            print(self.__firstName + " " + self.__lastName + 'has been assigned to the following classes.' )
+            print(self.__firstName + " " + self.__lastName + ' has been assigned to the following classes.' )
         
             for i in self.enrolClassList:
-                print(i)
+                print(i.className)
+            return 'Press enter to return.'
         else:
-            return (self.__firstName + " " + self.__lastName + 'has not been assigned to any class.')
+            return (self.__firstName + " " + self.__lastName + ' has not been assigned to any class.')
         
     def enrol(self, groupExercise):
         if groupExercise not in self.__enrolClassList:

@@ -117,9 +117,9 @@ Max {self.__maxCapacity} students allowed.\n')
     def removeMember(self, member):
         if member in self.__memberAll:
             self.__memberAll.remove(member)
-            return ((member + ' has been removed from the enrolled list.'), self.__success)
+            return ((member.firstName + ' has been removed from the enrolled list.'), self.__success)
         else:
-            return ((member + ' is not in the enrolled list'), self.__fail)
+            return ((member.firstName + ' is not in the enrolled list'), self.__fail)
         
     def displayEnrolled(self):
         print('All gym members currently enrolled in ' + self.__className)
@@ -150,8 +150,11 @@ Max {self.__maxCapacity} students allowed.\n')
         return ('Fee set.')
 
     def totalPayment(self):
-        total = len(self.__memberAll) * self.__fee
-        return ('The total payment received is ' + str(total) + ' NZD.')
+        if self.__memberAll != [] and self.__fee != None:
+            total = len(self.__memberAll) * self.__fee
+            return ('The total payment received is ' + str(total) + ' NZD.')
+        else:
+            return 'Nobody enrolled the class or fee has not been set yet.'
     
     def markAttendance(self, member):
         if member in self.__memberAll:
@@ -161,4 +164,7 @@ Max {self.__maxCapacity} students allowed.\n')
             return (f"Caution: you cannot mark {member.firstName}'s attendance because {member.firstName} is not in the enrolled list.")
         
     def attendanceClass(self):
-            return ('The attendance of the class is '+ str(round(len((self.__memberCheckin) / len(self.__memberAll))* 100), 2) + '%')
+            if self.__memberAll != []:
+                return ('The attendance of the class is '+ str(round(((len(self.__memberCheckin) / len(self.__memberAll))* 100), 2)) + '%')
+            else:
+                return 'Nobody enrolled the class.'
