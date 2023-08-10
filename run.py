@@ -140,6 +140,8 @@ while userInput.upper() != 'Q':
             print('16 - Display classes a trainer teaches\n')
             ctl.trainerClass()
             input()
+            
+    # catch the error so that you can keep testing rather than terminated
     except Exception: # catch the error so that you can keep testing rather than terminated
         print(f"An error occured. Press enter to return menu.")
         input()
