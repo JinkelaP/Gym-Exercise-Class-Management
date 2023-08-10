@@ -1,6 +1,7 @@
 import model.groupExercise as gE
 
 class Member:
+    # Static variable to hold the next available ID number
     nextID = 100
 
     def __init__(self, firstName, lastName):
@@ -8,14 +9,15 @@ class Member:
         self.__lastName = lastName
         self.__idNumber = Member.nextID
         self.__enrolClassList = []
-        # auto generated ID
+        # Increment the next available ID number
         Member.nextID += 1
 
     def __str__(self):
+        # Return the string representation of the member
         return 'IDnumber ' + str(self.__idNumber) + ' ' + self.__firstName + ' ' + self.__lastName
     
     #----------------------------------------------
-    # getter and setter for each attributes
+    # getter and setter for each attribute， preparing for using other customised controller
     
     @property
     def firstName(self):
@@ -59,19 +61,23 @@ class Member:
     
 
     #----------------------------------------------
-    # methods below
+    # Methods specific to the Member class
+
+    # Enroll the member in a given group exercise class if not already enrolled. Validation
     def enrol(self, groupExercise):
         if groupExercise not in self.__enrolClassList:
             self.__enrolClassList.append(groupExercise)
         else:
-            pass
+            return 'The class has been added in the list.'
 
+    # Cancel the member's enrollment in a given group exercise class if enrolled
     def cancelEnrol(self,groupExercise):
         if groupExercise in self.__enrolClassList:
             self.__enrolClassList.remove(groupExercise)
         else:
-            pass
+            return 'The class is not in the list.'
 
+    # Display the classes in which the member is enrolled
     def enrolClassDisplay(self):
         if self.__enrolClassList != []:
         

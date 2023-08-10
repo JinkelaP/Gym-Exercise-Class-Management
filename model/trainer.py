@@ -8,6 +8,7 @@ class Trainer:
         self.__enrolClassList = []
 
     def __str__(self):
+        # Return the string representation of the trainer
         return self.__firstName + ' ' + self.__lastName + ' ' + self.__expertise
     
     #----------------------------------------------
@@ -54,6 +55,9 @@ class Trainer:
 
     #----------------------------------------------
     # methods below
+    # Methods specific to the Trainer class
+
+    # Display the classes assigned to the trainer
     def enrolClassDisplay(self):
         if self.__enrolClassList != []:
         
@@ -64,9 +68,10 @@ class Trainer:
             return 'Press enter to return.'
         else:
             return (self.__firstName + " " + self.__lastName + ' has not been assigned to any class.')
-        
+    
+    # Assign the trainer to a given group exercise class if not already assigned
     def enrol(self, groupExercise):
         if groupExercise not in self.__enrolClassList:
             self.__enrolClassList.append(groupExercise)
         else:
-            pass
+            return 'The class has been added in the list.'

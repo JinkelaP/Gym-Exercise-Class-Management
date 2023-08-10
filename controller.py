@@ -13,6 +13,7 @@ def create():
     global memberList
     global trainerList
     
+    # Create the objects for groups, members, and trainers
     groupList = [GroupExercise('Swimming', 3), GroupExercise('Running', 3)]
     memberList = [Member('Haochen', 'Zhu'), Member('Lu', 'Lu'), Member('Yang', 'Yang'), Member('Silver', 'Wang'), Member('Leo', 'Zhao')]
     trainerList = [Trainer('Bill','Gates', 'Swimming'), Trainer('Elon','Musk', 'Running')]
@@ -82,6 +83,7 @@ def setClassFee():
     
 # Add member to a class
 def addMember():
+    # Same logic as assignTrainer, but for members
     if groupList != [] and memberList != []:
         while True:
             for index, i in enumerate(groupList):
@@ -107,6 +109,7 @@ def addMember():
     else:
         return input('No class or member has been created.\n')
 
+# Removes a member from a class
 def removeMember():
     if groupList != [] and memberList != []:
         while True:
@@ -133,7 +136,7 @@ def removeMember():
     else:
         return input('No class or member has been created.\n')
 
-
+# Marks a member as present in a class
 def checkinMember():
     if groupList != [] and memberList != []:
         while True:
@@ -158,6 +161,7 @@ def checkinMember():
     else:
         return input('No class or member has been created.\n')
 
+# Lists all members enrolled in a particular class
 def listMemberInClass():
     if groupList != [] and memberList != []:
         while True:
@@ -177,7 +181,8 @@ def listMemberInClass():
     
     else:
         return input('No class or member has been created.\n')
-    
+
+# Lists all members on the waitlist for a particular class
 def listMemberWaitClass():
     if groupList != [] and memberList != []:
         while True:
@@ -197,7 +202,8 @@ def listMemberWaitClass():
     
     else:
         return input('No class or member has been created.\n')
-    
+
+# Shows the number of available slots in a class    
 def classSlotNumber():
     if groupList != [] and memberList != []:
         while True:
@@ -213,7 +219,8 @@ def classSlotNumber():
                 input('Incorrect index!')
     else:
         return input('No class or member has been created.\n')
-    
+
+# Shows the number of enrolled members in a class    
 def classEnrolledNumber():
     if groupList != [] and memberList != []:
         while True:
@@ -230,6 +237,7 @@ def classEnrolledNumber():
     else:
         return input('No class or member has been created.\n')
 
+# Shows the number of members on the waitlist for a class
 def classWaitNumber():
     if groupList != [] and memberList != []:
         while True:
@@ -245,7 +253,8 @@ def classWaitNumber():
                 input('Incorrect index!')
     else:
         return input('No class or member has been created.\n')
-    
+
+# Shows the number of attendees in a class    
 def classAttendNumber():
     if groupList != [] and memberList != []:
         while True:
@@ -261,7 +270,8 @@ def classAttendNumber():
                 input('Incorrect index!')
     else:
         return input('No class or member has been created.\n')
-    
+
+# Shows the attendance rate for a class    
 def classAttendRate():
     if groupList != [] and memberList != []:
         while True:
@@ -278,6 +288,7 @@ def classAttendRate():
     else:
         return input('No class or member has been created.\n')
 
+# Calculates the total payment for a class
 def totalPayment():
     if groupList != [] and memberList != []:
         while True:
@@ -293,7 +304,8 @@ def totalPayment():
                 input('Incorrect index!')
     else:
         return input('No class or member has been created.\n')
-    
+
+ # Displays the classes a member is enrolled in    
 def memberClass():
     if groupList != [] and memberList != []:
         while True:
@@ -310,6 +322,7 @@ def memberClass():
     else:
         return input('No class or member has been created.\n')
 
+# Displays the classes a trainer is enrolled in
 def trainerClass():
     if groupList != [] and trainerList != []:
         while True:
